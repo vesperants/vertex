@@ -4,15 +4,19 @@ from typing import Optional
 from google.api_core.client_options import ClientOptions
 from google.cloud import discoveryengine_v1
 
+PROJECT_ID = "vesp-a581d"
+LOCATION_ID = "global"
+ENGINE_ID = "najir-search_1745733029866"
+
 def arabic_to_devanagari(numstr):
     digits_map = str.maketrans("0123456789", "०१२३४५६७८९")
     return numstr.translate(digits_map)
 
 def retrieve_case_title(
     case_number: str,
-    project_id: str,
-    location: str,
-    engine_id: str,
+    project_id: str = PROJECT_ID
+    location: str = LOCATION_ID
+    engine_id: str = ENGINE_ID
 ) -> Optional[str]:
     nepali_number = arabic_to_devanagari(case_number)
     api_endpoint = f"{location}-discoveryengine.googleapis.com" if location != "global" else None
@@ -36,9 +40,9 @@ def retrieve_case_title(
 # This is a "pure retrieval" tool for ADK Agent
 def title_finder_retriever(
     case_number: str,
-    project_id: str,
-    location: str,
-    engine_id: str
+    project_id: str = PROJECT_ID
+    location: str = LOCATION_ID
+    engine_id: str = ENGINE_ID
 ) -> str:
     """
     Pure retrieval: Fetch only the title of a Supreme Court case by case number.
