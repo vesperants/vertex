@@ -37,7 +37,7 @@ def search_decision_title_by_number(
     print("No exact match found.")
     return None
 
-def najir_expert_tool(
+def title_finder_tool(
     case_number: str,
     project_id: str,
     location: str,
@@ -51,7 +51,7 @@ def najir_expert_tool(
     # NOTE: You can swap for Gemini, PaLM, OpenAI or any LLM here, just use the API directly
     try:
         from vertexai.preview.language_models import TextGenerationModel
-        model = TextGenerationModel.from_pretrained("gemini-1.5-pro-preview-0409")
+        model = TextGenerationModel.from_pretrained("gemini-2.0-flash")
         prompt = (
             f"You are a legal expert. The title of the Supreme Court decision {case_number}: \n"
             f"{title}\n\n"
