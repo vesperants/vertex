@@ -4,7 +4,7 @@ from google.adk.agents import LlmAgent
 from title_finder_tool import title_finder_retriever
 from vertexai.preview.language_models import TextGenerationModel
 
-MODEL_GEMINI_2_0_FLASH = "gemini-2.0-flash"
+MODEL = "gemini-2.0-flash"
 
 def najir_expert_tool(
     case_number: str,
@@ -32,7 +32,7 @@ def najir_expert_tool(
     )
 
     try:
-        model = TextGenerationModel.from_pretrained(MODEL_GEMINI_2_0_FLASH)
+        model = TextGenerationModel.from_pretrained(MODEL)
         response = model.predict(prompt)
         return response.text.strip()
     except Exception as e:
@@ -42,7 +42,7 @@ def najir_expert_tool(
 # Attach the above function as the agent's tool
 najir_expert_agent = LlmAgent(
     name="najir_expert_agent",
-    model=MODEL_GEMINI_2_0_FLASH,
+    model=MODEL,
     instruction=(
         "You are the Najir Expert. "
         "You answer questions about Nepali Supreme Court cases using ONLY the retrieved case title "
